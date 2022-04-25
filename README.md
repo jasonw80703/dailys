@@ -1,0 +1,7 @@
+# Dailys
+
+## Development
+
+```
+yarn start
+```
