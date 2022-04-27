@@ -1,11 +1,14 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.titleText}>Dailys</Text>
-    </View>
+    <NavigationContainer>
+      <View style={styles.container}>
+        <Text style={styles.titleText}>Dailys</Text>
+      </View>
+    </NavigationContainer>
   );
 };
 
