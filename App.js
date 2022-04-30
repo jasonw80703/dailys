@@ -1,28 +1,26 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import LaunchScreen from "./components/LaunchScreen";
+import WhatIsDailys from "./components/explanation/WhatIsDailys";
+import Signup from "./components/auth/Signup";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <View style={styles.container}>
-        <Text style={styles.titleText}>Dailys</Text>
-      </View>
+      <Stack.Navigator initialRouteName='Launch'>
+        <Stack.Screen
+          name='Launch'
+          component={LaunchScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name='Signup' component={Signup} />
+        <Stack.Screen name='Carousel1' component={WhatIsDailys} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  titleText: {
-    fontSize: 20,
-    lineHeight: 24,
-    fontWeight: "bold",
-  },
-});
 
 export default App;
