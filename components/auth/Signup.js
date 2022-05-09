@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Button, TextInput } from "react-native";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,10 @@ export default function Signup() {
   const onSignup = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
+        const docRef = setDoc(doc(db, "users", auth.currentUser.uid), {
+          name,
+          email,
+        });
         console.log(result);
       })
       .catch((error) => {
