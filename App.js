@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -51,18 +51,18 @@ const App = () => {
   if (user.loggedIn) {
     return (
       <Provider store={store}>
-        <Main />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName='Main'>
+            <Stack.Screen name='Main' component={Main} options={{ headerShown: false }} />
+          </Stack.Navigator>
+        </NavigationContainer>
       </Provider>
     );
   } else {
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Launch'>
-          <Stack.Screen
-            name='Launch'
-            component={LaunchScreen}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name='Launch' component={LaunchScreen} options={{ headerShown: false }} />
           <Stack.Screen name='Signup' component={Signup} />
           <Stack.Screen name='Login' component={Login} />
         </Stack.Navigator>
