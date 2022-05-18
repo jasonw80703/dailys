@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LaunchScreen from './components/auth/LaunchScreen';
 import Main from './components/Main';
 import Signup from './components/auth/Signup';
+import Login from './components/auth/Login';
 import { auth } from './firebase';
 
 // Redux
@@ -39,13 +40,6 @@ const App = () => {
     };
   }, []);
 
-  // ADD login logic
-  // const requestLogin = useCallback((username, password) => {
-  //   login
-  // })
-
-  // ADD logout logic
-
   if (isLoading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center' }}>
@@ -70,6 +64,7 @@ const App = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen name='Signup' component={Signup} />
+          <Stack.Screen name='Login' component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
     );

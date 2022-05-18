@@ -1,6 +1,6 @@
 import { auth, db } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { USER_STATE_CHANGE } from '../constants/index';
+import { CLEAR_DATA, USER_STATE_CHANGE } from '../constants/index';
 
 export const fetchUser = () => {
   return (dispatch) => {
@@ -12,5 +12,11 @@ export const fetchUser = () => {
         console.log('User does not exist.');
       }
     });
+  };
+};
+
+export const clearStore = () => {
+  return (dispatch) => {
+    dispatch({ type: CLEAR_DATA });
   };
 };

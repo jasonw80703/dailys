@@ -4,7 +4,7 @@ import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
-export default function Signup() {
+const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -38,4 +38,6 @@ export default function Signup() {
       <Button title='Sign Up' onPress={() => onSignup()} />
     </View>
   );
-}
+};
+
+export default Signup;

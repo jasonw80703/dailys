@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Text } from 'react-native';
-import { fetchUser } from '../redux/actions/index';
+import { View, Text, Button } from 'react-native';
+import { fetchUser, clearStore } from '../redux/actions/index';
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -10,6 +12,12 @@ const Main = () => {
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  const onLogout = () => {
+    signOut(auth).then(() => {
+      dispatch(clearStore());
+    });
+  };
 
   if (!user) {
     return (
@@ -22,6 +30,7 @@ const Main = () => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
       <Text>Hi {user.name}!</Text>
+      <Button title='Logout' onPress={() => onLogout()}/>
     </View>
   );
 };
