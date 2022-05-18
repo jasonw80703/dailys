@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text } from 'react-native';
 import HomeScreen from './main/HomeScreen';
@@ -8,7 +8,7 @@ import StatsScreen from './main/StatsScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { fetchUser } from '../redux/actions/index';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -27,13 +27,13 @@ const Main = () => {
   }
 
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }} labeled={false}>
       <Tab.Screen
         name='Home'
         component={HomeScreen}
         options={
           { tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name='home' color={color} size={26} />
+            <MaterialCommunityIcons name='home-circle' color={color} size={26} />
           )}
         }
       />
@@ -42,7 +42,7 @@ const Main = () => {
         component={StatsScreen}
         options={
           { tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name='chart-bar' color={color} size={26} />
+            <MaterialCommunityIcons name='chart-pie' color={color} size={26} />
           )}
         }
       />
@@ -51,7 +51,7 @@ const Main = () => {
         component={ProfileScreen}
         options={
           { tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name='account' color={color} size={26} />
+            <MaterialCommunityIcons name='account-circle' color={color} size={26} />
           )}
         }
       />
