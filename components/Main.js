@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { View, Text } from "react-native";
-import { fetchUser } from "../redux/actions/index";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { View, Text } from 'react-native';
+import { fetchUser } from '../redux/actions/index';
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const Main = () => {
   }
 
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
+    <View style={{ flex: 1, justifyContent: 'center' }}>
       <Text>Hi {user.name}!</Text>
     </View>
   );

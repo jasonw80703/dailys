@@ -27,7 +27,9 @@
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "eslint": "^8.15.0",
+    "eslint-plugin-react": "^7.29.4"
   },
   "private": true
 }

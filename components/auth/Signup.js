@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { View, Button, TextInput } from "react-native";
-import { auth, db } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import React, { useState } from 'react';
+import { View, Button, TextInput } from 'react-native';
+import { auth, db } from '../../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
 export default function Signup() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const onSignup = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        const docRef = setDoc(doc(db, "users", auth.currentUser.uid), {
+        setDoc(doc(db, 'users', auth.currentUser.uid), {
           name,
           email,
         });

@@ -1,18 +1,17 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LaunchScreen from "./components/auth/LaunchScreen";
-import Main from "./components/Main";
-import WhatIsDailys from "./components/explanation/WhatIsDailys";
-import Signup from "./components/auth/Signup";
-import { auth } from "./firebase";
+import React, { useCallback, useEffect, useState } from 'react';
+import { View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import LaunchScreen from './components/auth/LaunchScreen';
+import Main from './components/Main';
+import Signup from './components/auth/Signup';
+import { auth } from './firebase';
 
 // Redux
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./redux/reducers";
-import thunk from "redux-thunk";
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './redux/reducers';
+import thunk from 'redux-thunk';
 const store = configureStore({ reducer: rootReducer, middleware: [thunk] });
 
 const Stack = createNativeStackNavigator();
@@ -49,7 +48,7 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text>Loading</Text>
       </View>
     );
@@ -71,7 +70,6 @@ const App = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen name='Signup' component={Signup} />
-          <Stack.Screen name='Carousel1' component={WhatIsDailys} />
         </Stack.Navigator>
       </NavigationContainer>
     );
