@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as dayjs from 'dayjs';
 import { View, Button, TextInput } from 'react-native';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -15,6 +16,7 @@ const Signup = () => {
         setDoc(doc(db, 'users', auth.currentUser.uid), {
           displayName,
           email,
+          createdAt: dayjs().format(),
         });
         console.log(result);
       })
