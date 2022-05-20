@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Text } from 'react-native';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import HomeScreen from './main/HomeScreen';
 import ProfileScreen from './main/ProfileScreen';
 import StatsScreen from './main/StatsScreen';
@@ -20,8 +20,8 @@ const Main = () => {
 
   if (!user) {
     return (
-      <View>
-        <Text>Loading...</Text>
+      <View style={styles.loadingView}>
+        <ActivityIndicator size='large' />
       </View>
     );
   }
@@ -58,5 +58,12 @@ const Main = () => {
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  loadingView: {
+    flex: 1,
+    justifyContent: 'center'
+  }
+});
 
 export default Main;
