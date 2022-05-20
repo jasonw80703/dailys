@@ -13,6 +13,10 @@ const Spacer = ({ size }) => {
   return <View style={{ padding: amt }}></View>;
 };
 
+Spacer.defaultProps = {
+  size: 'md'
+};
+
 Spacer.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };

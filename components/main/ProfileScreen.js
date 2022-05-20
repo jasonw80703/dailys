@@ -1,7 +1,7 @@
 import React from 'react';
 import * as dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import Spacer from '../Spacer';
+import Spacer from '../shared/Spacer';
 import { useDispatch, useSelector } from 'react-redux';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { clearStore } from '../../redux/actions/index';
