@@ -1,0 +1,290 @@
+[
+  {
+    "date": "2022-05-24",
+    "prompt1": "Brushed my teeth",
+    "prompt2": "Went for a walk",
+    "prompt3": "Took a nap"
+  },
+  {
+    "date": "2022-05-25",
+    "prompt1": "Called a loved one",
+    "prompt2": "Ate a banana",
+    "prompt3": "Read a book"
+  },
+  {
+    "date": "2022-05-26",
+    "prompt1": "Drank some coffee",
+    "prompt2": "Said \"I love you\"",
+    "prompt3": "Woke up early"
+  },
+  {
+    "date": "2022-05-27",
+    "prompt1": "Did laundry",
+    "prompt2": "Cooked lunch",
+    "prompt3": "Learned something new"
+  },
+  {
+    "date": "2022-05-28",
+    "prompt1": "Played some sports",
+    "prompt2": "Took a shower",
+    "prompt3": "Listened to music"
+  },
+  {
+    "date": "2022-05-29",
+    "prompt1": "Ate some fruit",
+    "prompt2": "Walked my dog",
+    "prompt3": "Saw the sunset"
+  },
+  {
+    "date": "2022-05-30",
+    "prompt1": "Cut my nails",
+    "prompt2": "Went to the grocery store",
+    "prompt3": "Played video games"
+  },
+  {
+    "date": "2022-05-31",
+    "prompt1": "Worked out",
+    "prompt2": "Read the news",
+    "prompt3": "Washed my hair"
+  },
+  {
+    "date": "2022-06-01",
+    "prompt1": "Flossed my teeth",
+    "prompt2": "Ate vitamins",
+    "prompt3": "Watched a movie"
+  },
+  {
+    "date": "2022-06-02",
+    "prompt1": "Drank some boba",
+    "prompt2": "Watched TV",
+    "prompt3": "Rode a bike"
+  },
+  {
+    "date": "2022-06-03",
+    "prompt1": "Played board games",
+    "prompt2": "Wrote in my diary",
+    "prompt3": "Accomplished something at work"
+  },
+  {
+    "date": "2022-06-04",
+    "prompt1": "Ate breakfast",
+    "prompt2": "Volunteered",
+    "prompt3": "Drank lots of water"
+  },
+  {
+    "date": "2022-06-05",
+    "prompt1": "Washed dishes",
+    "prompt2": "Flowered plants",
+    "prompt3": "Texted my friends"
+  },
+  {
+    "date": "2022-06-06",
+    "prompt1": "Smelled flowers",
+    "prompt2": "Did some stretches",
+    "prompt3": "Met someone new"
+  },
+  {
+    "date": "2022-06-07",
+    "prompt1": "Paid bills",
+    "prompt2": "Did some planning",
+    "prompt3": "Drank milk"
+  },
+  {
+    "date": "2022-06-08",
+    "prompt1": "Fixed something broken",
+    "prompt2": "Talked to a stranger",
+    "prompt3": "Watched the sunrise"
+  },
+  {
+    "date": "2022-06-09",
+    "prompt1": "Became upset at someone",
+    "prompt2": "Boiled water",
+    "prompt3": "Started something new"
+  },
+  {
+    "date": "2022-06-10",
+    "prompt1": "Hugged someone",
+    "prompt2": "Checked social media",
+    "prompt3": "Went to a cafe"
+  },
+  {
+    "date": "2022-06-11",
+    "prompt1": "Washed my face",
+    "prompt2": "Cut some vegetables",
+    "prompt3": "Built something"
+  },
+  {
+    "date": "2022-06-12",
+    "prompt1": "Broke something",
+    "prompt2": "Watched Youtube",
+    "prompt3": "Used the microwave"
+  },
+  {
+    "date": "2022-06-13",
+    "prompt1": "Finished a puzzle",
+    "prompt2": "Slept early",
+    "prompt3": "Cooked dinner"
+  },
+  {
+    "date": "2022-06-14",
+    "prompt1": "Took out the trash",
+    "prompt2": "Asked for help",
+    "prompt3": "Bought new clothes"
+  },
+  {
+    "date": "2022-06-15",
+    "prompt1": "Wore different socks",
+    "prompt2": "Took the train",
+    "prompt3": "Cooked something new"
+  },
+  {
+    "date": "2022-06-16",
+    "prompt1": "Ate something unhealthy",
+    "prompt2": "Chewed gum",
+    "prompt3": "Was surprised by something"
+  },
+  {
+    "date": "2022-06-17",
+    "prompt1": "Drank hot water",
+    "prompt2": "Beat a challenge",
+    "prompt3": "Screamed"
+  },
+  {
+    "date": "2022-06-18",
+    "prompt1": "Tried a new restaurant",
+    "prompt2": "Put on moisturizer",
+    "prompt3": "Remembered something"
+  },
+  {
+    "date": "2022-06-19",
+    "prompt1": "Took the bus",
+    "prompt2": "Ate something healthy",
+    "prompt3": "Paid for someone else"
+  },
+  {
+    "date": "2022-06-20",
+    "prompt1": "Video chat someone",
+    "prompt2": "Donated something",
+    "prompt3": "Ate something spicy"
+  },
+  {
+    "date": "2022-06-21",
+    "prompt1": "Put on sunscreen",
+    "prompt2": "Get rid of something useless",
+    "prompt3": "Took a flight"
+  },
+  {
+    "date": "2022-06-22",
+    "prompt1": "Smiled",
+    "prompt2": "Woke up after one alarm",
+    "prompt3": "Used chopsticks"
+  },
+  {
+    "date": "2022-06-23",
+    "prompt1": "Washed my belly button",
+    "prompt2": "Helped someone",
+    "prompt3": "Go for a swim"
+  },
+  {
+    "date": "2022-06-24",
+    "prompt1": "Hugged a stuff animal",
+    "prompt2": "Wore a hat",
+    "prompt3": "Studied"
+  },
+  {
+    "date": "2022-06-25",
+    "prompt1": "Made someone laugh",
+    "prompt2": "Meditated",
+    "prompt3": "Sent a meme"
+  },
+  {
+    "date": "2022-06-26",
+    "prompt1": "Did pullups",
+    "prompt2": "Drank tea",
+    "prompt3": "Gave up on something"
+  },
+  {
+    "date": "2022-06-27",
+    "prompt1": "Hit a goal",
+    "prompt2": "Ate chocolate",
+    "prompt3": "Said goodbye"
+  },
+  {
+    "date": "2022-06-28",
+    "prompt1": "Went on a hike",
+    "prompt2": "Wished someone a happy birthday",
+    "prompt3": "Put on deodorant"
+  },
+  {
+    "date": "2022-06-29",
+    "prompt1": "Did situps",
+    "prompt2": "Gave someone a high five",
+    "prompt3": "Forgot something"
+  },
+  {
+    "date": "2022-06-30",
+    "prompt1": "Received a package",
+    "prompt2": "Learned a new word",
+    "prompt3": "Did my bed this morning"
+  },
+  {
+    "date": "2022-07-01",
+    "prompt1": "Forgave someone",
+    "prompt2": "Drank water",
+    "prompt3": "Sang a song"
+  },
+  {
+    "date": "2022-07-02",
+    "prompt1": "Cursed",
+    "prompt2": "Went for a run",
+    "prompt3": "Took a bath"
+  },
+  {
+    "date": "2022-07-03",
+    "prompt1": "Drank juice",
+    "prompt2": "Spoke multiple languages",
+    "prompt3": "Danced"
+  },
+  {
+    "date": "2022-07-04",
+    "prompt1": "Cleaned something old",
+    "prompt2": "Traveled somewhere new",
+    "prompt3": "Flossed"
+  },
+  {
+    "date": "2022-07-05",
+    "prompt1": "Listened to a new song",
+    "prompt2": "Rested my eyes",
+    "prompt3": "Ate vegetables"
+  },
+  {
+    "date": "2022-07-06",
+    "prompt1": "Cried",
+    "prompt2": "Wore a jacket",
+    "prompt3": "Took medicine"
+  },
+  {
+    "date": "2022-07-07",
+    "prompt1": "Signed something",
+    "prompt2": "Laughed out loud",
+    "prompt3": "Said \"I miss you\""
+  },
+  {
+    "date": "2022-07-08",
+    "prompt1": "Blew my nose",
+    "prompt2": "Listened to new music",
+    "prompt3": "Cleaned my room"
+  },
+  {
+    "date": "2022-07-09",
+    "prompt1": "Mentored someone",
+    "prompt2": "Read a magazine",
+    "prompt3": "Slept late"
+  },
+  {
+    "date": "2022-07-10",
+    "prompt1": "Went for a walk",
+    "prompt2": "Did pushups",
+    "prompt3": "Boiled water"
+  }
+]
