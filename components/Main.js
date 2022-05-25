@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useDispatch, useSelector } from 'react-redux';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import HomeScreen from './main/HomeScreen';
 import ProfileScreen from './main/ProfileScreen';
 import StatsScreen from './main/StatsScreen';
+import Loader from './shared/Loader';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { fetchUser } from '../redux/actions/index';
 
@@ -18,13 +18,7 @@ const Main = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (!user) {
-    return (
-      <View style={styles.loadingView}>
-        <ActivityIndicator size='large' />
-      </View>
-    );
-  }
+  if (!user) { return <Loader />; }
 
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }} labeled={false}>
@@ -58,12 +52,5 @@ const Main = () => {
     </Tab.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  loadingView: {
-    flex: 1,
-    justifyContent: 'center'
-  }
-});
 
 export default Main;
