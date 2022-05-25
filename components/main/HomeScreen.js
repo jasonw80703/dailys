@@ -99,12 +99,32 @@ const HomeScreen = () => {
       </View>
       <View style={styles.promptContainer}>
         <Text style={styles.promptHeader}>On this day, I ...</Text>
-        <Text>{daily.prompt1}</Text>
-        <Text>{userDaily.ans1?.toString()}</Text>
-        <Text>{daily.prompt2}</Text>
-        <Text>{userDaily.ans2?.toString()}</Text>
-        <Text>{daily.prompt3}</Text>
-        <Text>{userDaily.ans3?.toString()}</Text>
+        <View style={styles.promptContainerLeft}>
+          <View style={styles.promptRowFlexContainer}>
+            <View style={styles.promptQuestionContainer}>
+              <Text>{daily.prompt1}</Text>
+            </View>
+            <View style={styles.promptAnswerContainer}>
+              <Text>{userDaily.ans1?.toString()}Yes</Text>
+            </View>
+          </View>
+          <View style={styles.promptRowFlexContainer}>
+            <View style={styles.promptQuestionContainer}>
+              <Text>{daily.prompt2}</Text>
+            </View>
+            <View style={styles.promptAnswerContainer}>
+              <Text>{userDaily.ans2?.toString()}Yes</Text>
+            </View>
+          </View>
+          <View style={styles.promptRowFlexContainer}>
+            <View style={styles.promptQuestionContainer}>
+              <Text>{daily.prompt3}</Text>
+            </View>
+            <View style={styles.promptAnswerContainer}>
+              <Text>{userDaily.ans3?.toString()}Yes</Text>
+            </View>
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -134,7 +154,26 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontStyle: 'italic',
     paddingBottom: 30,
-  }
+  },
+  promptContainerLeft: {
+    flex: 2,
+    flexDirection: 'column',
+  },
+  promptRowFlexContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  promptQuestionContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  promptAnswerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
 });
 
 export default HomeScreen;
