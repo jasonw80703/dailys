@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as dayjs from 'dayjs';
-import { View, Button, TextInput, Text, StyleSheet } from 'react-native';
+import { View, Button, TextInput, Text } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 // Firebase stuff
@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 import HorizontalRule from '../shared/HorizontalRule';
+import styles from './styles';
 
 const Signup = () => {
   const [submitError, setSubmitError] = useState('');
@@ -119,38 +120,11 @@ const Signup = () => {
         </View>
       }
 
-      <View style={styles.signUpButton}>
+      <View style={styles.submitButton}>
         <Button title='Sign Up' onPress={handleSubmit(onSignup)} />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  validationView: {
-    marginLeft: 6,
-    marginRight: 6,
-    marginBottom: 3,
-  },
-  validationText: {
-    color: 'red',
-  },
-  signUpButton: {
-    margin: 15,
-  },
-  formInput: {
-    margin: 6,
-  },
-  submitErrorView: {
-    backgroundColor: '#F25050',
-    padding: 8,
-    margin: 6,
-    borderRadius: 10,
-  },
-  submitErrorText: {
-    color: 'white',
-    fontWeight: 'bold',
-  }
-});
 
 export default Signup;
