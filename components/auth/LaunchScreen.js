@@ -1,17 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { Button } from '@rneui/base';
+import { View, StyleSheet, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
 const LaunchScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>DAILYS</Text>
-      <Pressable style={styles.button} onPress={() => navigation.navigate('Signup')}>
-        <Text style={styles.buttonText}>Signup</Text>
-      </Pressable>
-      <Pressable style={styles.button} onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.buttonText}>Login</Text>
-      </Pressable>
+      <Button title='Login' buttonStyle={styles.loginButton} titleStyle={styles.loginButtonText} onPress={() => navigation.navigate('Login')} />
+      <Button title='Signup' buttonStyle={styles.signUpButton} type='outline' titleStyle={styles.signUpButtonText} onPress={() => navigation.navigate('Signup')} />
     </View>
   );
 };
@@ -27,7 +24,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     margin: 30,
   },
-  button: {
+  loginButton: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
@@ -38,12 +35,27 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     width: 100
   },
-  buttonText: {
+  loginButtonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+  },
+  signUpButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 20,
+    elevation: 3,
+    marginBottom: 5,
+    width: 100
+  },
+  signUpButtonText: {
+    fontSize: 16,
+    lineHeight: 21,
+    letterSpacing: 0.25,
   },
 });
 
