@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from '@rneui/base';
+import { View } from 'react-native';
 
 const StatsScreen = () => {
   return (

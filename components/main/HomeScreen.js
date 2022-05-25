@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as dayjs from 'dayjs';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Text } from '@rneui/base';
 import Loader from '../shared/Loader';
 import { auth, db } from '../../firebase';
 import {

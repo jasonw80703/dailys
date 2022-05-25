@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from '@rneui/base';
-import { View, StyleSheet, Text } from 'react-native';
+import { Button, Text } from '@rneui/base';
+import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 const LaunchScreen = ({ navigation }) => {

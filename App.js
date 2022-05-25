@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Text } from '@rneui/base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LaunchScreen from './components/auth/LaunchScreen';

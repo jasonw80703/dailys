@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as dayjs from 'dayjs';
-import { Button } from '@rneui/base';
-import { View, TextInput, Text } from 'react-native';
+import { Button, Text } from '@rneui/base';
+import { View, TextInput } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
 // Firebase stuff
