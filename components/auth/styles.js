@@ -11,6 +11,8 @@ const styles = StyleSheet.create({
   },
   submitButton: {
     margin: 15,
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   formInput: {
     margin: 6,

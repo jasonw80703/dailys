@@ -29,7 +29,9 @@ const ProfileScreen = () => {
       <View style={styles.infoView}>
         <Text><b>Email:</b> {user.email}</Text>
         <Text><b>User since:</b> {dayjs(user.createdAt).fromNow()}</Text>
-        <Spacer size='md' />
+      </View>
+      <Spacer size='md' />
+      <View style={styles.logoutButton}>
         <Button title='Logout' onPress={() => onLogout()}/>
       </View>
     </View>
@@ -47,6 +49,10 @@ const styles = StyleSheet.create({
   },
   nameText: {
     fontSize: 40,
+  },
+  logoutButton: {
+    flex: 1,
+    justifyContent: 'flex-end',
   }
 });
 
