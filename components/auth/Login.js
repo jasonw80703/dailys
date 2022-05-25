@@ -27,7 +27,7 @@ const Login = () => {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1, padding: 20 }}>
       {
         !!submitError && (
           <View style={styles.submitErrorView}>
