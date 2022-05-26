@@ -18,7 +18,7 @@ const Main = () => {
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (!user) { return <Loader />; }
+  if (!user) { return <Loader />; } // show error instead
 
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }} labeled={false}>

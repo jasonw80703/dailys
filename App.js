@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { LogBox, View } from 'react-native';
 import { Text } from '@rneui/base';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,6 +17,8 @@ import thunk from 'redux-thunk';
 const store = configureStore({ reducer: rootReducer, middleware: [thunk] });
 
 const Stack = createNativeStackNavigator();
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 const onAuthStateChange = (userCallback, loadingCallback) => {
   return auth.onAuthStateChanged((user) => {

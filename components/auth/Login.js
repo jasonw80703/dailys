@@ -19,9 +19,6 @@ const Login = () => {
 
   const onLogin = ({ email, password }) => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((result) => {
-        console.log(result);
-      })
       .catch((error) => {
         setSubmitError(error.toString());
       });

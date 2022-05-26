@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import * as dayjs from 'dayjs';
+import { format } from 'date-fns';
 import { View, StyleSheet } from 'react-native';
 import { ButtonGroup, Text } from '@rneui/base';
 import Loader from '../shared/Loader';
@@ -23,7 +23,7 @@ const HomeScreen = () => {
   const [userDaily, setUserDaily] = useState();
   // TODO: set unexpected error
   // const [error, setError] = useState('');
-  const date = dayjs().format('YYYY-MM-DD');
+  const date = format(new Date(), 'yyyy-LL-dd');
   const uid = auth.currentUser.uid;
 
   const userDailysRef = collection(db, 'userdailys');
@@ -53,7 +53,9 @@ const HomeScreen = () => {
     const fetchDaily = async () => {
       const snapshot = await getDoc((doc(db, 'dailys', date)));
       if (snapshot.exists) {
-        setDaily(snapshot.data());
+        if (isSubscribed) {
+          setDaily(snapshot.data());
+        }
       } else {
         throw 'No Daily for today';
       }
@@ -62,7 +64,7 @@ const HomeScreen = () => {
     fetchDaily()
       .catch(console.error); // TODO: set unexpected error
 
-    return () => isSubscribed = false;
+    return () => { isSubscribed = false; };
   }, [date]);
 
   useEffect(() => {
@@ -80,23 +82,27 @@ const HomeScreen = () => {
           ans3: null,
         });
 
-        setUserDaily({
-          id: docRef.id,
-          date,
-          ans1: null,
-          ans2: null,
-          ans3: null,
-        });
+        if (isSubscribed) {
+          setUserDaily({
+            id: docRef.id,
+            date,
+            ans1: null,
+            ans2: null,
+            ans3: null,
+          });
+        }
       } else {
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          setUserDaily({
-            id: doc.id,
-            date: date,
-            ans1: data.ans1,
-            ans2: data.ans2,
-            ans3: data.ans3,
-          });
+          if (isSubscribed) {
+            setUserDaily({
+              id: doc.id,
+              date: date,
+              ans1: data.ans1,
+              ans2: data.ans2,
+              ans3: data.ans3,
+            });
+          }
         });
       }
     };
@@ -104,7 +110,7 @@ const HomeScreen = () => {
     fetchUserDailys()
       .catch(console.error); // TODO: set unexpected error
 
-    return () => isSubscribed = false;
+    return () => { isSubscribed = false; };
   }, [uid]);
 
   if (!userDaily) { return <Loader />; }
@@ -176,6 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
+    paddingTop: 50,
     flexDirection: 'column',
   },
   // Date stuff
