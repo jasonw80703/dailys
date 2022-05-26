@@ -22,18 +22,26 @@ const Signup = () => {
     }
   });
 
-  const onSignup = ({ email, password, displayName }) => {
-    createUserWithEmailAndPassword(auth, email, password)
+  const onSignup = async ({ email, password, displayName }) => {
+    await createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        setDoc(doc(db, 'users', auth.currentUser.uid), {
-          displayName: displayName,
-          email: email,
-          createdAt: dayjs().format(),
-        });
+        writeToFirestore(email, displayName);
       })
       .catch((error) => {
         setSubmitError(error.toString());
       });
+  };
+
+  const writeToFirestore = async (email, displayName) => {
+    try {
+      setDoc(doc(db, 'users', auth.currentUser.uid), {
+        displayName: displayName,
+        email: email,
+        createdAt: dayjs().format(),
+      });
+    } catch (error) {
+      setSubmitError(error.toString());
+    }
   };
 
   return (
