@@ -3,5 +3,5 @@
 ## Development
 
 ```
-yarn start
+expo start
 ```
