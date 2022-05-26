@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { View } from 'react-native';
+import { Text } from '@rneui/base';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeScreen from './main/HomeScreen';
@@ -6,19 +8,29 @@ import ProfileScreen from './main/ProfileScreen';
 import StatsScreen from './main/StatsScreen';
 import Loader from './shared/Loader';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { fetchUser } from '../redux/actions/index';
+import { fetchUser, setLoading } from '../redux/actions/index';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Main = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userState.currentUser);
+  const isLoading = useSelector((state) => state.userState.isLoading);
 
   useEffect(() => {
+    dispatch(setLoading());
     dispatch(fetchUser());
   }, [dispatch]);
 
-  if (!user) { return <Loader />; } // show error instead
+  if (isLoading) { return <Loader />; }
+
+  if (!user) {
+    return (
+      <View>
+        <Text>Unexpected error occurred.</Text>
+      </View>
+    );
+  }
 
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }} labeled={false}>

@@ -1,6 +1,6 @@
 import { auth, db } from '../../firebase';
 import { doc, getDoc } from 'firebase/firestore';
-import { CLEAR_DATA, USER_STATE_CHANGE } from '../constants/index';
+import { CLEAR_DATA, IS_LOADING, USER_STATE_CHANGE } from '../constants/index';
 
 export const fetchUser = () => {
   return (dispatch) => {
@@ -12,6 +12,12 @@ export const fetchUser = () => {
         console.log('User does not exist.');
       }
     });
+  };
+};
+
+export const setLoading = () => {
+  return (dispatch) => {
+    dispatch({ type: IS_LOADING });
   };
 };
 
