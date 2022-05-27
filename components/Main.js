@@ -8,7 +8,7 @@ import ProfileScreen from './main/ProfileScreen';
 import StatsScreen from './main/StatsScreen';
 import Loader from './shared/Loader';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { fetchUser, setLoading } from '../redux/actions/index';
+import { fetchUser, setUserLoading } from '../redux/actions/index';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const Main = () => {
   const isLoading = useSelector((state) => state.userState.isLoading);
 
   useEffect(() => {
-    dispatch(setLoading());
+    dispatch(setUserLoading());
     dispatch(fetchUser());
   }, [dispatch]);
 

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchUserDailys } from '../../redux/actions/index';
+import { fetchUserDailys, setUserDailysLoading } from '../../redux/actions/index';
 import PropTypes from 'prop-types';
 import { Text } from '@rneui/base';
 import { View } from 'react-native';
+import Loader from '../shared/Loader';
 
 const useForceUpdate = () => {
   // eslint-disable-next-line no-unused-vars
@@ -16,11 +17,13 @@ const StatsScreen = ({ navigation }) => {
   const forceUpdate = useForceUpdate();
   const userDailys = useSelector((state) => state.userDailysState.userDailys);
   // console.log(userDailys);
+  const isLoading = useSelector((state) => state.userDailysState.isLoading);
 
   useEffect(() => {
     // This is for being able to render every time we click on the tab
     const unsubscribe = navigation.addListener('tabPress', () => {
       forceUpdate();
+      dispatch(setUserDailysLoading());
       dispatch(fetchUserDailys());
     });
 
@@ -29,8 +32,11 @@ const StatsScreen = ({ navigation }) => {
 
   useEffect(() => {
     // console.log('again');
+    dispatch(setUserDailysLoading());
     dispatch(fetchUserDailys());
   }, [dispatch]);
+
+  if (isLoading) { return <Loader />; }
 
   if (userDailys === undefined || userDailys.length == 0) {
     return (

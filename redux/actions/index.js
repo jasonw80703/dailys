@@ -1,5 +1,11 @@
 import { auth, db } from '../../firebase';
-import { CLEAR_DATA, FETCH_USER_DAILYS, IS_LOADING, USER_STATE_CHANGE } from '../constants/index';
+import {
+  CLEAR_DATA,
+  FETCH_USER_DAILYS,
+  USER_LOADING,
+  USER_STATE_CHANGE,
+  USER_DAILYS_LOADING,
+} from '../constants/index';
 import {
   collection,
   doc,
@@ -22,9 +28,9 @@ export const fetchUser = () => {
   };
 };
 
-export const setLoading = () => {
+export const setUserLoading = () => {
   return (dispatch) => {
-    dispatch({ type: IS_LOADING });
+    dispatch({ type: USER_LOADING });
   };
 };
 
@@ -56,5 +62,11 @@ export const fetchUserDailys = () => {
       });
     }
     dispatch({ type: FETCH_USER_DAILYS, data: userDailys });
+  };
+};
+
+export const setUserDailysLoading = () => {
+  return (dispatch) => {
+    dispatch({ type: USER_DAILYS_LOADING });
   };
 };
