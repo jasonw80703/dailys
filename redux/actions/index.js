@@ -1,6 +1,13 @@
 import { auth, db } from '../../firebase';
-import { doc, getDoc } from 'firebase/firestore';
-import { CLEAR_DATA, IS_LOADING, USER_STATE_CHANGE } from '../constants/index';
+import { CLEAR_DATA, FETCH_USER_DAILYS, IS_LOADING, USER_STATE_CHANGE } from '../constants/index';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 
 export const fetchUser = () => {
   return (dispatch) => {
@@ -24,5 +31,30 @@ export const setLoading = () => {
 export const clearStore = () => {
   return (dispatch) => {
     dispatch({ type: CLEAR_DATA });
+  };
+};
+
+export const fetchUserDailys = () => {
+  return async (dispatch) => {
+    const userDailysRef = collection(db, 'userdailys');
+    const userDailysQuery = query(
+      userDailysRef,
+      where('userId', '==', auth.currentUser.uid),
+    );
+    const querySnapshot = await getDocs(userDailysQuery);
+    const userDailys = [];
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        userDailys.push({
+          id: doc.id,
+          date: data.date,
+          ans1: data.ans1,
+          ans2: data.ans2,
+          ans3: data.ans3,
+        });
+      });
+    }
+    dispatch({ type: FETCH_USER_DAILYS, data: userDailys });
   };
 };

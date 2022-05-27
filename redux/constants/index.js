@@ -1,3 +1,4 @@
 export const USER_STATE_CHANGE = 'USER_STATE_CHANGE';
 export const IS_LOADING = 'IS_LOADING';
 export const CLEAR_DATA = 'CLEAR_DATA';
+export const FETCH_USER_DAILYS = 'FETCH_USER_DAILYS';

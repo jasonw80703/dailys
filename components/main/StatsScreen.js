@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserDailys } from '../../redux/actions/index';
 import PropTypes from 'prop-types';
 import { Text } from '@rneui/base';
 import { View } from 'react-native';
@@ -10,20 +12,37 @@ const useForceUpdate = () => {
 };
 
 const StatsScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const forceUpdate = useForceUpdate();
+  const userDailys = useSelector((state) => state.userDailysState.userDailys);
+  // console.log(userDailys);
 
   useEffect(() => {
     // This is for being able to render every time we click on the tab
     const unsubscribe = navigation.addListener('tabPress', () => {
       forceUpdate();
+      dispatch(fetchUserDailys());
     });
 
     return unsubscribe;
-  }, [navigation]);
+  }, [navigation, dispatch]);
 
-  console.log('render');
+  useEffect(() => {
+    // console.log('again');
+    dispatch(fetchUserDailys());
+  }, [dispatch]);
+
+  if (userDailys === undefined || userDailys.length == 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>No Data Found!</Text>
+      </View>
+    );
+  }
+
+  // console.log('render');
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Stats Page</Text>
     </View>
   );
