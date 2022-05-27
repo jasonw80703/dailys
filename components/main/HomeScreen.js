@@ -4,6 +4,7 @@ import { View, StyleSheet } from 'react-native';
 import { ButtonGroup, Text } from '@rneui/base';
 import Loader from '../shared/Loader';
 import { auth, db } from '../../firebase';
+import { COMPLETE, INCOMPLETE } from '../../constants/icons';
 import {
   addDoc,
   collection,
@@ -14,9 +15,6 @@ import {
   updateDoc,
   where,
 } from 'firebase/firestore';
-
-const COMPLETE = '✓';
-const INCOMPLETE = '✕';
 
 const HomeScreen = () => {
   const [daily, setDaily] = useState();
@@ -115,6 +113,7 @@ const HomeScreen = () => {
 
   if (!userDaily) { return <Loader />; }
 
+  // TODO: loop this to DRY up
   return (
     <View style={styles.container}>
       <View style={styles.dateContainer}>

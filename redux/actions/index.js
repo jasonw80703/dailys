@@ -52,7 +52,7 @@ export const fetchUserDailys = () => {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        userDailys.push({
+        userDailys.unshift({
           id: doc.id,
           date: data.date,
           ans1: data.ans1,
