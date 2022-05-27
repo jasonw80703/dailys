@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUserDailys, setUserDailysLoading } from '../../redux/actions/index';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import PersonalStats from '../stats/PersonalStats';
+import GlobalStats from '../stats/PersonalStats';
 import PropTypes from 'prop-types';
 import { Text } from '@rneui/base';
 import { View } from 'react-native';
 import Loader from '../shared/Loader';
+
+const Tab = createMaterialTopTabNavigator();
 
 const useForceUpdate = () => {
   // eslint-disable-next-line no-unused-vars
@@ -48,9 +53,10 @@ const StatsScreen = ({ navigation }) => {
 
   // console.log('render');
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Stats Page</Text>
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Personal" component={PersonalStats} />
+      <Tab.Screen name="Global" component={GlobalStats} />
+    </Tab.Navigator>
   );
 };
 
