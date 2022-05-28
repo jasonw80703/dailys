@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, ListItem, Text, Overlay } from '@rneui/base';
-import { View, StyleSheet } from 'react-native';
+import { ListItem, Text } from '@rneui/base';
+import { View } from 'react-native';
 import { fetchUserDailys, setUserDailysLoading, fetchDailys, setDailysLoading } from '../../redux/actions/index';
 import Loader from '../shared/Loader';
 import DailysSummary from './DailysSummary';
+import DailyOverlay from './DailyOverlay';
 
 // TODO: consider doing this in <StatsScreen /> and passing data here to props
 // https://stackoverflow.com/questions/60439210/how-to-pass-props-to-screen-component-with-a-tab-navigator
@@ -78,34 +79,16 @@ const PersonalStats = ({ navigation }) => {
           </ListItem>
         ))
       }
-      {/* TODO: move this to another component */}
-      {
-        isLoadingDailys && <Loader />
-      }
-      {
-        !isLoadingDailys && (
-          <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
-            <Text>{currentUserDaily?.date}</Text>
-            <Text>{currentDaily?.prompt1} - {currentUserDaily?.ans1?.toString()}</Text>
-            <Text>{currentDaily?.prompt2} - {currentUserDaily?.ans2?.toString()}</Text>
-            <Text>{currentDaily?.prompt3} - {currentUserDaily?.ans3?.toString()}</Text>
-            <Button title='Close' onPress={() => setShowModal(!showModal)}/>
-          </Overlay>
-        )
-      }
+      <DailyOverlay
+        isLoading={isLoadingDailys}
+        showModal={showModal}
+        setShowModal={setShowModal}
+        currentDaily={currentDaily}
+        currentUserDaily={currentUserDaily}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  checkmarks: {
-  },
-  overlay: {
-    backgroundColor: 'white',
-    width: 300,
-    height: 200,
-  }
-});
 
 PersonalStats.propTypes = {
   navigation: PropTypes.shape({
