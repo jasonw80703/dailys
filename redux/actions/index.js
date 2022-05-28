@@ -9,6 +9,7 @@ import {
   FETCH_DAILYS_LOADING,
   FETCH_DAILYS_ERROR,
 } from '../constants/index';
+import sort from './sort';
 import {
   collection,
   doc,
@@ -55,13 +56,7 @@ export const fetchUserDailys = () => {
     if (!querySnapshot.empty) {
       querySnapshot.forEach((doc) => {
         const data = doc.data();
-        userDailys.unshift({
-          id: doc.id,
-          date: data.date,
-          ans1: data.ans1,
-          ans2: data.ans2,
-          ans3: data.ans3,
-        });
+        sort(userDailys, data, doc.id);
       });
     }
     dispatch({ type: FETCH_USER_DAILYS, data: userDailys });
