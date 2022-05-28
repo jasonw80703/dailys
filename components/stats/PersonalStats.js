@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ListItem, Text, Overlay } from '@rneui/base';
 import { View, StyleSheet } from 'react-native';
@@ -6,14 +7,34 @@ import { fetchUserDailys, setUserDailysLoading } from '../../redux/actions/index
 import Loader from '../shared/Loader';
 import DailysSummary from './DailysSummary';
 
+// TODO: consider doing this in <StatsScreen /> and passing data here to props
+// https://stackoverflow.com/questions/60439210/how-to-pass-props-to-screen-component-with-a-tab-navigator
+const useForceUpdate = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [value, setValue] = useState(0);
+  return () => setValue(value => value + 1);
+};
+
 // TODO: wtf why are you doing 6 renders
 // TODO: let's do pagination for 2.0
-const PersonalStats = () => {
+const PersonalStats = ({ navigation }) => {
   const dispatch = useDispatch();
+  const forceUpdate = useForceUpdate();
   const [showModal, setShowModal] = useState(false);
   const [currentUserDaily, setCurrentUserDaily] = useState(null);
   const userDailys = useSelector((state) => state.userDailysState.userDailys);
   const isLoading = useSelector((state) => state.userDailysState.isLoading);
+
+  useEffect(() => {
+    // This is for being able to render every time we click on the tab
+    const unsubscribe = navigation.addListener('tabPress', () => {
+      forceUpdate();
+      dispatch(setUserDailysLoading());
+      dispatch(fetchUserDailys());
+    });
+
+    return unsubscribe;
+  }, [navigation, dispatch]);
 
   useEffect(() => {
     dispatch(setUserDailysLoading());
@@ -72,5 +93,11 @@ const styles = StyleSheet.create({
     height: 100,
   }
 });
+
+PersonalStats.propTypes = {
+  navigation: PropTypes.shape({
+    addListener: PropTypes.func,
+  }),
+};
 
 export default PersonalStats;
