@@ -6,6 +6,7 @@ const SizeMapping = {
   'sm': 80,
   'md': 40,
   'lg': 17,
+  'full': 0,
 };
 
 const HorizontalRule = ({ color, size }) => {
@@ -30,7 +31,7 @@ HorizontalRule.defaultProps = {
 
 HorizontalRule.propTypes = {
   color: PropTypes.string,
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes.oneOf(['sm', 'md', 'lg', 'full']),
 };
 
 export default HorizontalRule;

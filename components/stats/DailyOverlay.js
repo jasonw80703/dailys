@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Text, Overlay } from '@rneui/base';
+import { View, StyleSheet } from 'react-native';
 import Loader from '../shared/Loader';
-import { StyleSheet } from 'react-native';
+import HorizontalRule from '../shared/HorizontalRule';
+import { COMPLETE, INCOMPLETE, NOT_DONE } from '../../constants/icons';
+
+const getIcon = (ans) => {
+  if (ans === null) {
+    return <span style={{ color: 'gray' }}>{NOT_DONE}</span>;
+  }
+
+  return ans ?
+    <span style={{ color: 'green' }}>{COMPLETE}</span> :
+    <span style={{ color: 'red' }}>{INCOMPLETE}</span>;
+};
 
 const DailyOverlay = ({
   isLoading,
@@ -15,11 +27,29 @@ const DailyOverlay = ({
 
   return (
     <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
-      <Text>{currentUserDaily?.date}</Text>
-      <Text>{currentDaily?.prompt1} - {currentUserDaily?.ans1?.toString()}</Text>
-      <Text>{currentDaily?.prompt2} - {currentUserDaily?.ans2?.toString()}</Text>
-      <Text>{currentDaily?.prompt3} - {currentUserDaily?.ans3?.toString()}</Text>
-      <Button title='Close' onPress={() => setShowModal(!showModal)}/>
+      <Text h4>{currentUserDaily?.date}</Text>
+      <HorizontalRule size='full' />
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Text style={{ flex: 3 }}>{currentDaily?.prompt1}</Text>
+        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+          <Text>{getIcon(currentUserDaily?.ans1)}</Text>
+        </View>
+      </View>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Text style={{ flex: 3 }}>{currentDaily?.prompt2}</Text>
+        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+          <Text>{getIcon(currentUserDaily?.ans2)}</Text>
+        </View>
+      </View>
+      <View style={{ flex: 1, flexDirection: 'row' }}>
+        <Text style={{ flex: 3 }}>{currentDaily?.prompt3}</Text>
+        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+          <Text>{getIcon(currentUserDaily?.ans3)}</Text>
+        </View>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title='Close' onPress={() => setShowModal(!showModal)}/>
+      </View>
     </Overlay>
   );
 };
@@ -43,6 +73,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: 300,
     height: 200,
+  },
+  buttonContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
   }
 });
 
