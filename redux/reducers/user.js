@@ -1,4 +1,4 @@
-import { CLEAR_DATA, USER_LOADING, USER_STATE_CHANGE } from '../constants';
+import { USER_LOADING, USER_STATE_CHANGE } from '../constants';
 
 const initialState = {
   isLoading: false,
@@ -18,8 +18,6 @@ export const user = (state = initialState, action) => {
       isLoading: false,
       currentUser: action.currentUser
     };
-  case CLEAR_DATA:
-    return initialState;
   default:
     return state;
   }
