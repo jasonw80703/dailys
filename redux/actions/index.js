@@ -5,6 +5,9 @@ import {
   USER_LOADING,
   USER_STATE_CHANGE,
   USER_DAILYS_LOADING,
+  FETCH_DAILYS,
+  FETCH_DAILYS_LOADING,
+  FETCH_DAILYS_ERROR,
 } from '../constants/index';
 import {
   collection,
@@ -68,5 +71,22 @@ export const fetchUserDailys = () => {
 export const setUserDailysLoading = () => {
   return (dispatch) => {
     dispatch({ type: USER_DAILYS_LOADING });
+  };
+};
+
+export const fetchDailys = (date) => {
+  return async (dispatch) => {
+    const daily = await getDoc(doc(db, 'dailys', date));
+    if (daily.exists()) {
+      dispatch({ type: FETCH_DAILYS, data: daily.data(), date });
+    } else {
+      dispatch({ type: FETCH_DAILYS_ERROR });
+    }
+  };
+};
+
+export const setDailysLoading = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_DAILYS_LOADING });
   };
 };

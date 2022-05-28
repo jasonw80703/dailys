@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ListItem, Text, Overlay } from '@rneui/base';
 import { View, StyleSheet } from 'react-native';
-import { fetchUserDailys, setUserDailysLoading } from '../../redux/actions/index';
+import { fetchUserDailys, setUserDailysLoading, fetchDailys, setDailysLoading } from '../../redux/actions/index';
 import Loader from '../shared/Loader';
 import DailysSummary from './DailysSummary';
 
@@ -22,8 +22,11 @@ const PersonalStats = ({ navigation }) => {
   const forceUpdate = useForceUpdate();
   const [showModal, setShowModal] = useState(false);
   const [currentUserDaily, setCurrentUserDaily] = useState(null);
+
   const userDailys = useSelector((state) => state.userDailysState.userDailys);
-  const isLoading = useSelector((state) => state.userDailysState.isLoading);
+  const isLoadingUserDailys = useSelector((state) => state.userDailysState.isLoading);
+  const dailys = useSelector((state) => state.dailysState.dailys);
+  const isLoadingDailys = useSelector((state) => state.dailysState.isLoading);
 
   useEffect(() => {
     // This is for being able to render every time we click on the tab
@@ -41,9 +44,18 @@ const PersonalStats = ({ navigation }) => {
     dispatch(fetchUserDailys());
   }, [dispatch]);
 
-  // console.log('render');
+  const clickDaily = (daily) => {
+    setCurrentUserDaily(daily);
+    if (!dailys[daily.date]) {
+      dispatch(setDailysLoading());
+      dispatch(fetchDailys(daily.date));
+    }
+    setShowModal(!showModal);
+  };
 
-  if (isLoading) { return <Loader />; }
+  const currentDaily = dailys[currentUserDaily?.date];
+
+  if (isLoadingUserDailys) { return <Loader />; }
 
   if (userDailys === undefined || userDailys.length == 0) {
     return (
@@ -57,10 +69,7 @@ const PersonalStats = ({ navigation }) => {
     <View>
       {
         userDailys.map((l, i) => (
-          <ListItem key={i} bottomDivider onPress={() => {
-            setCurrentUserDaily(l);
-            setShowModal(!showModal);
-          }}>
+          <ListItem key={i} bottomDivider onPress={() => clickDaily(l)}>
             <ListItem.Content>
               <ListItem.Title>{l.date}</ListItem.Title>
               <DailysSummary daily={l} />
@@ -69,17 +78,21 @@ const PersonalStats = ({ navigation }) => {
           </ListItem>
         ))
       }
-      <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
-        <Text>{currentUserDaily?.date}</Text>
-        <Text>
-          {
-            [currentUserDaily?.ans1, currentUserDaily?.ans2, currentUserDaily?.ans3].map((ans, i) => (
-              ans?.toString()
-            ))
-          }
-        </Text>
-        <Button title='Close' onPress={() => setShowModal(!showModal)}/>
-      </Overlay>
+      {/* TODO: move this to another component */}
+      {
+        isLoadingDailys && <Loader />
+      }
+      {
+        !isLoadingDailys && (
+          <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
+            <Text>{currentUserDaily?.date}</Text>
+            <Text>{currentDaily?.prompt1} - {currentUserDaily?.ans1?.toString()}</Text>
+            <Text>{currentDaily?.prompt2} - {currentUserDaily?.ans2?.toString()}</Text>
+            <Text>{currentDaily?.prompt3} - {currentUserDaily?.ans3?.toString()}</Text>
+            <Button title='Close' onPress={() => setShowModal(!showModal)}/>
+          </Overlay>
+        )
+      }
     </View>
   );
 };
@@ -90,7 +103,7 @@ const styles = StyleSheet.create({
   overlay: {
     backgroundColor: 'white',
     width: 300,
-    height: 100,
+    height: 200,
   }
 });
 
