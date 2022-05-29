@@ -7,6 +7,7 @@ import LaunchScreen from './components/auth/LaunchScreen';
 import Main from './components/Main';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
+import ForgotPassword from './components/auth/ForgotPassword';
 import { auth } from './firebase';
 
 // Redux
@@ -68,6 +69,7 @@ const App = () => {
           <Stack.Screen name='Launch' component={LaunchScreen} options={{ headerShown: false }} />
           <Stack.Screen name='Signup' component={Signup} />
           <Stack.Screen name='Login' component={Login} />
+          <Stack.Screen name='ForgotPassword' component={ForgotPassword} options={{ title: 'Reset Password' }} />
         </Stack.Navigator>
       </NavigationContainer>
     );

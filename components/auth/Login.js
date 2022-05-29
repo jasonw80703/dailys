@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { Button, Text } from '@rneui/base';
 import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useForm, Controller } from 'react-hook-form';
 
 import HorizontalRule from '../shared/HorizontalRule';
-import styles from './styles';
+import formStyles from './styles';
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [submitError, setSubmitError] = useState('');
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
@@ -25,11 +26,11 @@ const Login = () => {
   };
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={styles.mainContainer}>
       {
         !!submitError && (
-          <View style={styles.submitErrorView}>
-            <Text style={styles.submitErrorText}>Unexpected error logging in: {submitError}</Text>
+          <View style={formStyles.submitErrorView}>
+            <Text style={formStyles.submitErrorText}>Unexpected error logging in: {submitError}</Text>
           </View>
         )
       }
@@ -44,7 +45,7 @@ const Login = () => {
             placeholder='email'
             onChangeText={onChange}
             value={value}
-            style={styles.formInput}
+            style={formStyles.formInput}
           />
         )}
         name='email'
@@ -61,7 +62,7 @@ const Login = () => {
             onChangeText={onChange}
             value={value}
             secureTextEntry={true}
-            style={styles.formInput}
+            style={formStyles.formInput}
           />
         )}
         name='password'
@@ -70,21 +71,49 @@ const Login = () => {
       <HorizontalRule size='lg' />
 
       {errors.email &&
-        <View style={styles.validationView}>
-          <Text style={styles.validationText}>{errors.email?.message}</Text>
+        <View style={formStyles.validationView}>
+          <Text style={formStyles.validationText}>{errors.email?.message}</Text>
         </View>
       }
       {errors.password &&
-        <View style={styles.validationView}>
-          <Text style={styles.validationText}>{errors.password?.message}</Text>
+        <View style={formStyles.validationView}>
+          <Text style={formStyles.validationText}>{errors.password?.message}</Text>
         </View>
       }
 
-      <View style={styles.submitButton}>
+      <View style={styles.forgotPasswordContainer}>
+        <Button
+          type='clear'
+          title='Forgot your password?'
+          titleStyle={styles.forgotPasswordLink}
+          onPress={() => navigation.navigate('ForgotPassword')}
+        />
+      </View>
+
+      <View style={formStyles.submitButton}>
         <Button title='Login' onPress={handleSubmit(onLogin)} />
       </View>
     </View>
   );
+};
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 20,
+  },
+  forgotPasswordContainer: {
+    alignItems: 'center',
+  },
+  forgotPasswordLink: {
+    fontSize: 12,
+  },
+});
+
+Login.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func
+  }),
 };
 
 export default Login;
