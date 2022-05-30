@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
-import { View, StyleSheet } from 'react-native';
+import { Platform, View, StyleSheet } from 'react-native';
 import { ButtonGroup, Text } from '@rneui/base';
 import Loader from '../shared/Loader';
 import { auth, db } from '../../firebase';
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 30,
-    paddingTop: 50,
+    paddingTop: Platform.OS === 'android' ? 70 : 50,
     flexDirection: 'column',
   },
   // Date stuff

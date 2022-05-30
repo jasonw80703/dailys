@@ -7,17 +7,15 @@ import { Text } from '@rneui/base';
 const DailysSummary = ({ daily }) => {
   return (
     <View>
-      <Text>
-        {
-          [daily.ans1, daily.ans2, daily.ans3].map((ans, i) => (
-            ans === null ?
-              <span key={i} style={{ color: 'gray' }}>{NOT_DONE}</span> :
-              ans ?
-                <span key={i} style={{ color: 'green' }}>{COMPLETE}</span> :
-                <span key={i} style={{ color: 'red' }}>{INCOMPLETE}</span>
-          ))
-        }
-      </Text>
+      {
+        [daily.ans1, daily.ans2, daily.ans3].map((ans, i) => (
+          ans === null ?
+            <Text key={i} style={{ color: 'gray' }}>{NOT_DONE}</Text> :
+            ans ?
+              <Text key={i} style={{ color: 'green' }}>{COMPLETE}</Text> :
+              <Text key={i} style={{ color: 'red' }}>{INCOMPLETE}</Text>
+        ))
+      }
     </View>
   );
 };

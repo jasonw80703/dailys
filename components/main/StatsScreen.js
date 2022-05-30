@@ -1,6 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Platform } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import PersonalStats from '../stats/PersonalStats';
 import { fetchUserDailys, setUserDailysLoading } from '../../redux/actions/index';
@@ -39,7 +40,7 @@ const StatsScreen = ({ navigation }) => {
   }, [dispatch]);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator style={{ paddingTop: Platform.OS === 'android' ? 50 : 0 }}>
       <Tab.Screen name='Personal' children={
         props =>
           <PersonalStats
