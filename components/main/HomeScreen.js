@@ -5,6 +5,7 @@ import { ButtonGroup, Text } from '@rneui/base';
 import Loader from '../shared/Loader';
 import { auth, db } from '../../firebase';
 import { COMPLETE, INCOMPLETE } from '../../constants/icons';
+import { DAILY_DATE_FORMAT } from '../../constants/dates';
 import {
   addDoc,
   collection,
@@ -21,7 +22,7 @@ const HomeScreen = () => {
   const [userDaily, setUserDaily] = useState();
   // TODO: set unexpected error
   // const [error, setError] = useState('');
-  const date = format(new Date(), 'yyyy-LL-dd');
+  const date = format(new Date(), DAILY_DATE_FORMAT);
   const uid = auth.currentUser.uid;
 
   const userDailysRef = collection(db, 'userdailys');

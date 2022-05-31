@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { fetchDailys, fetchUserDailysByDate, setUserDailysLoading } from '../../redux/actions/index';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
+import { DAILY_DATE_FORMAT } from '../../constants/dates';
 import Loader from '../shared/Loader';
 
 const GlobalStats = () => {
@@ -13,7 +14,7 @@ const GlobalStats = () => {
   const [date, setDate] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
 
-  const formattedDate = format(date, 'yyyy-LL-dd');
+  const formattedDate = format(date, DAILY_DATE_FORMAT);
 
   const dailys = useSelector((state) => state.dailysState.dailys);
   const globalUserDailys = useSelector((state) => state.userDailysState.globalUserDailys);
@@ -22,18 +23,22 @@ const GlobalStats = () => {
   const userDaily = globalUserDailys[formattedDate];
   const daily = dailys[formattedDate];
 
-  useEffect(() => {
-    if (!globalUserDailys[formattedDate]) {
+  const fetchDailysAndUserDailys = (dispatch, dateToFetch) => {
+    if (!globalUserDailys[dateToFetch]) {
       dispatch(setUserDailysLoading());
-      if (!dailys[formattedDate]) {
-        dispatch(fetchDailys(formattedDate));
+      if (!dailys[dateToFetch]) {
+        dispatch(fetchDailys(dateToFetch));
       }
-      dispatch(fetchUserDailysByDate(formattedDate));
+      dispatch(fetchUserDailysByDate(dateToFetch));
     }
+  };
+
+  useEffect(() => {
+    fetchDailysAndUserDailys(dispatch, formattedDate);
   }, [dispatch]);
 
   const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate;
+    const formattedSelectedDate = format(selectedDate, DAILY_DATE_FORMAT);
     setShowModal(false);
 
     if (event?.type === 'dismissed') {
@@ -41,21 +46,31 @@ const GlobalStats = () => {
       return;
     }
 
-    // TODO (NEXT): fetch data for new date if not in store
-    setDate(currentDate);
+    fetchDailysAndUserDailys(dispatch, formattedSelectedDate);
+    setDate(selectedDate);
+  };
+
+  const formatAnswer = (ans) => {
+    if (ans.total === 0) { return '0%'; }
+
+    const percent = ((ans.completed / ans.total) * 100);
+    if (percent === 0) { return '0%'; }
+
+    return percent.toFixed(2).toString() + '%';
   };
 
   if (isLoadingUserDailys) { return <Loader />; }
 
   return (
     <View>
-      <Text>Date: {date?.toLocaleString()}</Text>
+      <Text>Date: {formattedDate}</Text>
       <Button title="Open" onPress={() => setShowModal(true)} />
       {showModal && (
         <DateTimePicker
-          testID="dateTimePicker"
           value={date || new Date()}
           onChange={onChange}
+          minimumDate={new Date(2022, 4, 24)}
+          maximumDate={new Date()}
         />
       )}
       {!userDaily &&
@@ -67,11 +82,11 @@ const GlobalStats = () => {
       {!!userDaily &&
         <View>
           <Text>{daily.prompt1}</Text>
-          <Text>{userDaily.ans1.total === 0 ? 0 : (userDaily.ans1.completed / userDaily.ans1.total) * 100}%</Text>
+          <Text>{formatAnswer(userDaily.ans1)}</Text>
           <Text>{daily.prompt2}</Text>
-          <Text>{userDaily.ans2.total === 0 ? 0 : (userDaily.ans2.completed / userDaily.ans2.total) * 100}%</Text>
+          <Text>{formatAnswer(userDaily.ans2)}</Text>
           <Text>{daily.prompt3}</Text>
-          <Text>{userDaily.ans3.total === 0 ? 0 : (userDaily.ans3.completed / userDaily.ans3.total) * 100}%</Text>
+          <Text>{formatAnswer(userDaily.ans3)}</Text>
         </View>
       }
     </View>
