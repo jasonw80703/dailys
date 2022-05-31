@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { format } from 'date-fns';
 import { Platform, View, StyleSheet } from 'react-native';
-import { ButtonGroup, Text } from '@rneui/base';
+import { Text } from '@rneui/base';
 import Loader from '../shared/Loader';
 import { auth, db } from '../../firebase';
-import { COMPLETE, INCOMPLETE } from '../../constants/icons';
+import Prompt from './Prompt';
 import { DAILY_DATE_FORMAT } from '../../constants/dates';
 import {
   addDoc,
@@ -123,54 +123,27 @@ const HomeScreen = () => {
       <View style={styles.promptContainer}>
         <Text style={styles.promptHeader}>On this day, I ...</Text>
         <View style={styles.promptContainerLeft}>
-          <View style={styles.promptRowFlexContainer}>
-            <View style={styles.promptQuestionContainer}>
-              <Text h4 style={[styles.promptQuestionText, { color: '#3A3E98' }]}>{daily.prompt1}</Text>
-            </View>
-            <View style={styles.promptAnswerContainer}>
-              <ButtonGroup
-                buttonStyle={{ width: 40 }}
-                selectedButtonStyle={{ backgroundColor: userDaily.ans1 ? '#4BB153' : '#F47174' }}
-                buttons={[COMPLETE, INCOMPLETE]}
-                onPress={(val) => updateAnswer('ans1', val)}
-                selectedIndex={
-                  userDaily.ans1 === null ? null : userDaily.ans1 ? 0 : 1
-                }
-              />
-            </View>
-          </View>
-          <View style={styles.promptRowFlexContainer}>
-            <View style={styles.promptQuestionContainer}>
-              <Text h4 style={[styles.promptQuestionText, { color: '#5256BC' }]}>{daily.prompt2}</Text>
-            </View>
-            <View style={styles.promptAnswerContainer}>
-              <ButtonGroup
-                buttonStyle={{ width: 40 }}
-                selectedButtonStyle={{ backgroundColor: userDaily.ans2 ? '#4BB153' : '#F47174' }}
-                buttons={[COMPLETE, INCOMPLETE]}
-                onPress={(val) => updateAnswer('ans2', val)}
-                selectedIndex={
-                  userDaily.ans2 === null ? null : userDaily.ans2 ? 0 : 1
-                }
-              />
-            </View>
-          </View>
-          <View style={styles.promptRowFlexContainer}>
-            <View style={styles.promptQuestionContainer}>
-              <Text h4 style={[styles.promptQuestionText, { color: '#4AB1D8' }]}>{daily.prompt3}</Text>
-            </View>
-            <View style={styles.promptAnswerContainer}>
-              <ButtonGroup
-                buttonStyle={{ width: 40 }}
-                selectedButtonStyle={{ backgroundColor: userDaily.ans3 ? '#4BB153' : '#F47174' }}
-                buttons={[COMPLETE, INCOMPLETE]}
-                onPress={(val) => updateAnswer('ans3', val)}
-                selectedIndex={
-                  userDaily.ans3 === null ? null : userDaily.ans3 ? 0 : 1
-                }
-              />
-            </View>
-          </View>
+          <Prompt
+            promptQuestionColor='#3A3E98'
+            prompt={daily.prompt1}
+            answer={userDaily.ans1}
+            answerNumber={'ans1'}
+            updateAnswer={updateAnswer}
+          />
+          <Prompt
+            promptQuestionColor='#5256BC'
+            prompt={daily.prompt2}
+            answer={userDaily.ans2}
+            answerNumber={'ans2'}
+            updateAnswer={updateAnswer}
+          />
+          <Prompt
+            promptQuestionColor='#4AB1D8'
+            prompt={daily.prompt3}
+            answer={userDaily.ans3}
+            answerNumber={'ans3'}
+            updateAnswer={updateAnswer}
+          />
         </View>
       </View>
     </View>
@@ -206,24 +179,6 @@ const styles = StyleSheet.create({
   promptContainerLeft: {
     flex: 2,
     flexDirection: 'column',
-  },
-  promptRowFlexContainer: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  promptQuestionContainer: {
-    flex: 3,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  promptAnswerContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
-  promptQuestionText: {
-    // maybe something later
   },
 });
 

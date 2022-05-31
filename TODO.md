@@ -5,7 +5,7 @@
   * https://alexb72.medium.com/how-to-add-pagination-to-a-react-native-flatlist-ce2425d02f1a
   * https://firebase.google.com/docs/firestore/query-data/query-cursors
 * set up error states
-* loop to DRY up HomeScreen
+* hide firebase config in .env?
 
 ## Completed
 
@@ -24,6 +24,6 @@
   * add redux to store global stats result - done
   * add redux to fetch and store dailys (reuse) - done
   * add component to show results - done
-
+* loop to DRY up HomeScreen
 ## Fixed Bugs
 * fix personal stats chevrons? - nah it's working on android
