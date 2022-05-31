@@ -114,7 +114,6 @@ const HomeScreen = () => {
 
   if (!userDaily) { return <Loader />; }
 
-  // TODO: loop this to DRY up
   return (
     <View style={styles.container}>
       <View style={styles.dateContainer}>

@@ -1,6 +1,11 @@
 ## TODO
 * style global stats page
 * fix text wrap on home screen (consider android)
+* pagination on personal stats page
+  * https://alexb72.medium.com/how-to-add-pagination-to-a-react-native-flatlist-ce2425d02f1a
+  * https://firebase.google.com/docs/firestore/query-data/query-cursors
+* set up error states
+* loop to DRY up HomeScreen
 
 ## Completed
 

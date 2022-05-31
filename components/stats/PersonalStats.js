@@ -8,8 +8,6 @@ import Loader from '../shared/Loader';
 import DailysSummary from './DailysSummary';
 import DailyOverlay from './DailyOverlay';
 
-// TODO: wtf why are you doing 6 renders
-// TODO: let's do pagination for 2.0
 const PersonalStats = ({ isLoadingUserDailys, userDailys}) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
