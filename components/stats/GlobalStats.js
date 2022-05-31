@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Text } from '@rneui/base';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { fetchDailys, fetchUserDailysByDate, setUserDailysLoading } from '../../redux/actions/index';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { format } from 'date-fns';
 import { DAILY_DATE_FORMAT } from '../../constants/dates';
-import Loader from '../shared/Loader';
+import GlobalStatsSummary from './GlobalStatsSummary';
 
 const GlobalStats = () => {
   const dispatch = useDispatch();
@@ -50,21 +50,17 @@ const GlobalStats = () => {
     setDate(selectedDate);
   };
 
-  const formatAnswer = (ans) => {
-    if (ans.total === 0) { return '0%'; }
-
-    const percent = ((ans.completed / ans.total) * 100);
-    if (percent === 0) { return '0%'; }
-
-    return percent.toFixed(2).toString() + '%';
-  };
-
-  if (isLoadingUserDailys) { return <Loader />; }
-
   return (
-    <View>
-      <Text>Date: {formattedDate}</Text>
-      <Button title="Open" onPress={() => setShowModal(true)} />
+    <View style={styles.mainContainer}>
+      <View style={styles.dateContainer}>
+        <Text h2 style={{ padding: 15 }}>Date: {formattedDate}</Text>
+        <Button title='Select Date' onPress={() => setShowModal(true)} />
+      </View>
+      <GlobalStatsSummary
+        isLoading={isLoadingUserDailys}
+        daily={daily}
+        userDaily={userDaily}
+      />
       {showModal && (
         <DateTimePicker
           value={date || new Date()}
@@ -73,24 +69,18 @@ const GlobalStats = () => {
           maximumDate={new Date()}
         />
       )}
-      {!userDaily &&
-        <View>
-          <Text>No data found for this date...</Text>
-        </View>
-      }
-      {/* TODO (NEXT): display data properly */}
-      {!!userDaily &&
-        <View>
-          <Text>{daily.prompt1}</Text>
-          <Text>{formatAnswer(userDaily.ans1)}</Text>
-          <Text>{daily.prompt2}</Text>
-          <Text>{formatAnswer(userDaily.ans2)}</Text>
-          <Text>{daily.prompt3}</Text>
-          <Text>{formatAnswer(userDaily.ans3)}</Text>
-        </View>
-      }
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+  },
+  dateContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+});
 
 export default GlobalStats;

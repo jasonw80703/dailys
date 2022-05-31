@@ -1,5 +1,4 @@
 ## TODO
-* style global stats page
 * fix text wrap on home screen (consider android)
 * pagination on personal stats page
   * https://alexb72.medium.com/how-to-add-pagination-to-a-react-native-flatlist-ce2425d02f1a
@@ -24,6 +23,7 @@
   * add redux to store global stats result - done
   * add redux to fetch and store dailys (reuse) - done
   * add component to show results - done
-* loop to DRY up HomeScreen
+* loop to DRY up HomeScreen - done
+* style global stats page - done
 ## Fixed Bugs
 * fix personal stats chevrons? - nah it's working on android
