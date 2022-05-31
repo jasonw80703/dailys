@@ -8,6 +8,7 @@ import {
   FETCH_DAILYS,
   FETCH_DAILYS_LOADING,
   FETCH_DAILYS_ERROR,
+  FETCH_USER_DAILYS_GLOBAL,
 } from '../constants/index';
 import sort from './sort';
 import {
@@ -83,5 +84,24 @@ export const fetchDailys = (date) => {
 export const setDailysLoading = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_DAILYS_LOADING });
+  };
+};
+
+export const fetchUserDailysByDate = (date) => {
+  return async (dispatch) => {
+    const userDailysRef = collection(db, 'userdailys');
+    const userDailysQuery = query(
+      userDailysRef,
+      where('date', '==', date),
+    );
+    const querySnapshot = await getDocs(userDailysQuery);
+    const userDailys = [];
+    if (!querySnapshot.empty) {
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        userDailys.push(data);
+      });
+    }
+    dispatch({ type: FETCH_USER_DAILYS_GLOBAL, data: userDailys, date });
   };
 };

@@ -1,5 +1,8 @@
 * fix personal stats chevrons?
-* think about global stats page
+* global stats
+  * add redux to store global stats result
+  * add redux to fetch and store dailys (reuse)
+  * add component to show results
 * style global stats page
 
 * setup database - done
@@ -12,3 +15,4 @@
 * move login and signup buttons to the bottom - done
 * style personal stats page - done
 * reset password logic - done
+* think about global stats page - done
