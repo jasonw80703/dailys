@@ -4,7 +4,6 @@
   * https://alexb72.medium.com/how-to-add-pagination-to-a-react-native-flatlist-ce2425d02f1a
   * https://firebase.google.com/docs/firestore/query-data/query-cursors
 * set up error states
-* hide firebase config in .env?
 
 ## Completed
 
@@ -25,5 +24,6 @@
   * add component to show results - done
 * loop to DRY up HomeScreen - done
 * style global stats page - done
+* hide firebase config in .env? - done
 ## Fixed Bugs
 * fix personal stats chevrons? - nah it's working on android

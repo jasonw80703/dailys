@@ -2,6 +2,8 @@
 
 ## Development
 
+Add firebase config to `firebase.js`.
+
 ```
 expo start
 # for web
