@@ -8,7 +8,7 @@ import Loader from '../shared/Loader';
 import DailysSummary from './DailysSummary';
 import DailyOverlay from './DailyOverlay';
 
-const PersonalStats = ({ isLoadingUserDailys, userDailys}) => {
+const PersonalStats = ({ isLoadingUserDailys, userDailys }) => {
   const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
   const [currentUserDaily, setCurrentUserDaily] = useState(null);

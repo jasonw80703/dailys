@@ -1,4 +1,4 @@
-import { FETCH_DAILYS, FETCH_DAILYS_LOADING } from '../constants';
+import { FETCH_DAILYS, FETCH_DAILYS_ERROR, FETCH_DAILYS_LOADING } from '../constants';
 
 const initialState = {
   isLoading: false,
@@ -19,6 +19,12 @@ export const dailys = (state = initialState, action) => {
       ...state,
       isLoading: false,
       dailys: {...state.dailys, [action.date]: action.data },
+    };
+  case FETCH_DAILYS_ERROR:
+    return {
+      ...state,
+      isLoading: false,
+      error: action.error,
     };
   default:
     return state;

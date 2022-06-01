@@ -76,7 +76,7 @@ export const fetchDailys = (date) => {
     if (daily.exists()) {
       dispatch({ type: FETCH_DAILYS, data: daily.data(), date });
     } else {
-      dispatch({ type: FETCH_DAILYS_ERROR });
+      dispatch({ type: FETCH_DAILYS_ERROR, error: 'No Daily found for this date.' });
     }
   };
 };

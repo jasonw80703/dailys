@@ -20,7 +20,7 @@ const GlobalStatsSummary = ({
 
   if (isLoading) { return <Loader />; }
 
-  if (!userDaily) {
+  if (!userDaily || !daily) {
     return (
       <View style={styles.percentageContainer}>
         <Text>No data found for this date...</Text>

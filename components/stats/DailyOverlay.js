@@ -25,25 +25,37 @@ const DailyOverlay = ({
 }) => {
   if (isLoading) return <Loader />;
 
+  if (!currentDaily) {
+    return (
+      <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
+        <Text h4>{currentUserDaily?.date}</Text>
+        <HorizontalRule size='full' />
+        <View style={{ flex: 1 }}>
+          <Text>No data</Text>
+        </View>
+      </Overlay>
+    );
+  }
+
   return (
     <Overlay overlayStyle={styles.overlay} isVisible={showModal} onBackdropPress={() => setShowModal(!showModal)}>
       <Text h4>{currentUserDaily?.date}</Text>
       <HorizontalRule size='full' />
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Text style={{ flex: 3 }}>{currentDaily?.prompt1}</Text>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+      <View style={styles.promptRow}>
+        <Text style={styles.promptRowText}>{currentDaily?.prompt1}</Text>
+        <View style={styles.promptRowIcon}>
           {getIcon(currentUserDaily?.ans1)}
         </View>
       </View>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Text style={{ flex: 3 }}>{currentDaily?.prompt2}</Text>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+      <View style={styles.promptRow}>
+        <Text style={styles.promptRowText}>{currentDaily?.prompt2}</Text>
+        <View style={styles.promptRowIcon}>
           {getIcon(currentUserDaily?.ans2)}
         </View>
       </View>
-      <View style={{ flex: 1, flexDirection: 'row' }}>
-        <Text style={{ flex: 3 }}>{currentDaily?.prompt3}</Text>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
+      <View style={styles.promptRow}>
+        <Text style={styles.promptRowText}>{currentDaily?.prompt3}</Text>
+        <View style={styles.promptRowIcon}>
           {getIcon(currentUserDaily?.ans3)}
         </View>
       </View>
@@ -77,6 +89,17 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+  },
+  promptRow: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  promptRowText: {
+    flex: 3,
+  },
+  promptRowIcon: {
+    flex: 1,
+    alignItems: 'flex-end',
   }
 });
 

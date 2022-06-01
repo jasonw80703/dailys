@@ -5,6 +5,14 @@ import { COMPLETE, INCOMPLETE, NOT_DONE } from '../../constants/icons';
 import { Text } from '@rneui/base';
 
 const DailysSummary = ({ daily }) => {
+  if (!daily) {
+    return (
+      <View>
+        <Text>No data</Text>
+      </View>
+    );
+  }
+
   return (
     <View>
       {
@@ -26,7 +34,7 @@ DailysSummary.propTypes = {
     ans1: PropTypes.bool,
     ans2: PropTypes.bool,
     ans3: PropTypes.bool,
-  }).isRequired,
+  }),
 };
 
 export default DailysSummary;
