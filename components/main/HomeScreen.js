@@ -20,8 +20,7 @@ import {
 const HomeScreen = () => {
   const [daily, setDaily] = useState();
   const [userDaily, setUserDaily] = useState();
-  // TODO: set unexpected error
-  // const [error, setError] = useState('');
+  const [error, setError] = useState('');
   const date = format(new Date(), DAILY_DATE_FORMAT);
   const uid = auth.currentUser.uid;
 
@@ -61,7 +60,9 @@ const HomeScreen = () => {
     };
 
     fetchDaily()
-      .catch(console.error); // TODO: set unexpected error
+      .catch(err => {
+        setError(err);
+      });
 
     return () => { isSubscribed = false; };
   }, [date]);
@@ -107,12 +108,28 @@ const HomeScreen = () => {
     };
 
     fetchUserDailys()
-      .catch(console.error); // TODO: set unexpected error
+      .catch(err => {
+        setError(err);
+      });
 
     return () => { isSubscribed = false; };
   }, [uid]);
 
   if (!userDaily) { return <Loader />; }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <View style={styles.dateContainer}>
+          <Text style={styles.dateHeader}>Dailys</Text>
+          <Text style={styles.dateText}>{userDaily.date}</Text>
+        </View>
+        <View style={styles.promptContainer}>
+          <Text>Unexpected error: {error}. Please restart the application.</Text>
+        </View>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
