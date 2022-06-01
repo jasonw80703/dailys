@@ -28,6 +28,7 @@ const GlobalStatsSummary = ({
     );  
   }
 
+  // TODO: loop here to DRY up
   return (
     <View style={styles.percentageContainer}>
       <View style={styles.promptRowFlexContainer}>
@@ -35,10 +36,10 @@ const GlobalStatsSummary = ({
           <Text h4 style={{ color: '#3A3E98' }}>{daily.prompt1}</Text>
         </View>
         <View style={styles.promptAnswerContainer}>
-          <View style={{ flex: 2, flexDirection: 'row' }}>
+          <View style={styles.answerPercentageContainer}>
             <Text style={styles.answerPercentage}>{formatAnswer(userDaily.ans1)}</Text>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.answerTotalContainer}>
             <Text>{`(${userDaily.ans1.total})`}</Text>
           </View>
         </View>
@@ -48,10 +49,10 @@ const GlobalStatsSummary = ({
           <Text h4 style={{ color: '#5256BC' }}>{daily.prompt2}</Text>
         </View>
         <View style={styles.promptAnswerContainer}>
-          <View style={{ flex: 2, flexDirection: 'row' }}>
+          <View style={styles.answerPercentageContainer}>
             <Text style={styles.answerPercentage}>{formatAnswer(userDaily.ans2)}</Text>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.answerTotalContainer}>
             <Text>{`(${userDaily.ans2.total})`}</Text>
           </View>
         </View>
@@ -61,10 +62,10 @@ const GlobalStatsSummary = ({
           <Text h4 style={{ color: '#4AB1D8' }}>{daily.prompt3}</Text>
         </View>
         <View style={styles.promptAnswerContainer}>
-          <View style={{ flex: 2, flexDirection: 'row' }}>
+          <View style={styles.answerPercentageContainer}>
             <Text style={styles.answerPercentage}>{formatAnswer(userDaily.ans3)}</Text>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row' }}>
+          <View style={styles.answerTotalContainer}>
             <Text>{`(${userDaily.ans3.total})`}</Text>
           </View>
         </View>
@@ -119,6 +120,14 @@ const styles = StyleSheet.create({
   },
   answerPercentage: {
     fontSize: 15,
+  },
+  answerPercentageContainer: {
+    flex: 2,
+    flexDirection: 'row',
+  },
+  answerTotalContainer: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });
 

@@ -33,7 +33,7 @@ const ProfileScreen = () => {
         <Card>
           <Card.Title><Text>What is Dailys?</Text></Card.Title>
           <Card.Divider />
-          <Text style={{ paddingBottom: 30 }}>The purpose of Dailys is to humanize us. No matter where you are in the world, you experience similar things with someone thousands of miles away. You think in similar ways, feel in similar ways, and do similar things every day.</Text>
+          <Text style={styles.blurb}>The purpose of Dailys is to humanize us. No matter where you are in the world, you experience similar things with someone thousands of miles away. You think in similar ways, feel in similar ways, and do similar things every day.</Text>
           <Text>At the end of the day, we are all human.</Text>
         </Card>
       </View>
@@ -63,7 +63,10 @@ const styles = StyleSheet.create({
   },
   cardContainer: {
     flex: 1,
-  }
+  },
+  blurb: {
+    paddingBottom: 30,
+  },
 });
 
 export default ProfileScreen;

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import * as dayjs from 'dayjs';
 import { Button, Text } from '@rneui/base';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
 
-// Firebase stuff
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 
 import HorizontalRule from '../shared/HorizontalRule';
-import styles from './styles';
+import formStyles from './styles';
 
 const Signup = () => {
   const [submitError, setSubmitError] = useState('');
@@ -45,11 +44,11 @@ const Signup = () => {
   };
 
   return (
-    <View style={{ flex: 1, padding: 20 }}>
+    <View style={styles.mainContainer}>
       {
         !!submitError && (
-          <View style={styles.submitErrorView}>
-            <Text style={styles.submitErrorText}>Unexpected error signing up: {submitError}</Text>
+          <View style={formStyles.submitErrorView}>
+            <Text style={formStyles.submitErrorText}>Unexpected error signing up: {submitError}</Text>
           </View>
         )
       }
@@ -64,7 +63,7 @@ const Signup = () => {
             placeholder='display name'
             onChangeText={onChange}
             value={value}
-            style={styles.formInput}
+            style={formStyles.formInput}
           />
         )}
         name='displayName'
@@ -84,7 +83,7 @@ const Signup = () => {
             placeholder='email'
             onChangeText={onChange}
             value={value}
-            style={styles.formInput}
+            style={formStyles.formInput}
           />
         )}
         name='email'
@@ -105,7 +104,7 @@ const Signup = () => {
             onChangeText={onChange}
             value={value}
             secureTextEntry={true}
-            style={styles.formInput}
+            style={formStyles.formInput}
           />
         )}
         name='password'
@@ -114,26 +113,33 @@ const Signup = () => {
       <HorizontalRule size='lg' />
 
       {errors.displayName &&
-        <View style={styles.validationView}>
-          <Text style={styles.validationText}>{errors.displayName?.message}</Text>
+        <View style={formStyles.validationView}>
+          <Text style={formStyles.validationText}>{errors.displayName?.message}</Text>
         </View>
       }
       {errors.email &&
-        <View style={styles.validationView}>
-          <Text style={styles.validationText}>{errors.email?.message}</Text>
+        <View style={formStyles.validationView}>
+          <Text style={formStyles.validationText}>{errors.email?.message}</Text>
         </View>
       }
       {errors.password &&
-        <View style={styles.validationView}>
-          <Text style={styles.validationText}>{errors.password?.message}</Text>
+        <View style={formStyles.validationView}>
+          <Text style={formStyles.validationText}>{errors.password?.message}</Text>
         </View>
       }
 
-      <View style={styles.submitButton}>
+      <View style={formStyles.submitButton}>
         <Button title='Sign Up' onPress={handleSubmit(onSignup)} />
       </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 20,
+  }
+});
 
 export default Signup;

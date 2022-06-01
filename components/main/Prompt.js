@@ -18,7 +18,7 @@ const Prompt = ({
       </View>
       <View style={styles.promptAnswerContainer}>
         <ButtonGroup
-          buttonStyle={{ width: 40 }}
+          buttonStyle={styles.buttonGroupStyle}
           selectedButtonStyle={{ backgroundColor: answer ? '#4BB153' : '#F47174' }}
           buttons={[COMPLETE, INCOMPLETE]}
           onPress={(val) => updateAnswer(answerNumber, val)}
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
+  },
+  buttonGroupStyle: {
+    width: 40,
   },
 });
 
