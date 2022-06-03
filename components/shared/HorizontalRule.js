@@ -34,4 +34,4 @@ HorizontalRule.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg', 'full']),
 };
 
-export default HorizontalRule;
+export default React.memo(HorizontalRule);

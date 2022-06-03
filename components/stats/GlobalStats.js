@@ -53,7 +53,7 @@ const GlobalStats = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.dateContainer}>
-        <Text h2 style={styles.dateText}>Date: {formattedDate}</Text>
+        <Text style={styles.dateText}>Date: {formattedDate}</Text>
         <Button title='Select Date' onPress={() => setShowModal(true)} />
       </View>
       <GlobalStatsSummary
@@ -83,6 +83,7 @@ const styles = StyleSheet.create({
   },
   dateText: {
     padding: 15,
+    fontSize: 35,
   },
 });
 

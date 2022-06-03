@@ -21,4 +21,4 @@ Spacer.propTypes = {
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
 };
 
-export default Spacer;
+export default React.memo(Spacer);
