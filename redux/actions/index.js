@@ -20,8 +20,8 @@ import {
   where,
 } from 'firebase/firestore';
 
-export const fetchUser = () => dispatch => {
-  getDoc(doc(db, 'users', auth.currentUser.uid)).then((snapshot) => {
+export const fetchUser = () => async dispatch => {
+  await getDoc(doc(db, 'users', auth.currentUser.uid)).then((snapshot) => {
     // console.log(auth.currentUser.uid);
     if (snapshot.exists) {
       dispatch({ type: USER_STATE_CHANGE, currentUser: snapshot.data() });
@@ -31,12 +31,12 @@ export const fetchUser = () => dispatch => {
   });
 };
 
-export const setUserLoading = () => dispatch => {
-  dispatch({ type: USER_LOADING });
+export const setUserLoading = () => {
+  return { type: USER_LOADING };
 };
 
-export const clearStore = () => dispatch => {
-  dispatch({ type: CLEAR_DATA });
+export const clearStore = () => {
+  return { type: CLEAR_DATA };
 };
 
 export const fetchUserDailys = () => async dispatch => {
@@ -56,11 +56,11 @@ export const fetchUserDailys = () => async dispatch => {
   dispatch({ type: FETCH_USER_DAILYS, data: userDailys });
 };
 
-export const setUserDailysLoading = () => dispatch => {
-  dispatch({ type: USER_DAILYS_LOADING });
+export const setUserDailysLoading = () => {
+  return { type: USER_DAILYS_LOADING };
 };
 
-export const fetchDailys = (date) => async dispatch => {
+export const fetchDailys = date => async dispatch => {
   const daily = await getDoc(doc(db, 'dailys', date));
   if (daily.exists()) {
     dispatch({ type: FETCH_DAILYS, data: daily.data(), date });
@@ -69,11 +69,11 @@ export const fetchDailys = (date) => async dispatch => {
   }
 };
 
-export const setDailysLoading = () => dispatch => {
-  dispatch({ type: FETCH_DAILYS_LOADING });
+export const setDailysLoading = () => {
+  return { type: FETCH_DAILYS_LOADING };
 };
 
-export const fetchUserDailysByDate = (date) => async dispatch => {
+export const fetchUserDailysByDate = date => async dispatch => {
   const userDailysRef = collection(db, 'userdailys');
   const userDailysQuery = query(
     userDailysRef,
