@@ -10,6 +10,11 @@ expo start
 w
 ```
 
+## Upload New Dailys
+* to upload new dailys, update `db/database.json` with new daily objects
+* add `"type": "module",` to `package.json`
+* run `node uploadScript.js` in `db/`
+
 ## Built with
 * React/React Native (Component based UI framework)
 * React Navigation (React Native navigation)

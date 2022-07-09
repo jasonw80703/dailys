@@ -286,5 +286,77 @@
     "prompt1": "Went for a walk",
     "prompt2": "Did pushups",
     "prompt3": "Boiled water"
+  },
+  {
+    "date": "2022-07-11",
+    "prompt1": "Took a break",
+    "prompt2": "Did an interview",
+    "prompt3": "Cleaned something"
+  },
+  {
+    "date": "2022-07-12",
+    "prompt1": "Helped a friend",
+    "prompt2": "Had a new idea",
+    "prompt3": "Sang a song"
+  },
+  {
+    "date": "2022-07-13",
+    "prompt1": "Drank something sweet",
+    "prompt2": "Danced",
+    "prompt3": "Went for a walk"
+  },
+  {
+    "date": "2022-07-14",
+    "prompt1": "Stretched",
+    "prompt2": "Laughed",
+    "prompt3": "Bought groceries"
+  },
+  {
+    "date": "2022-07-15",
+    "prompt1": "Called a friend",
+    "prompt2": "Watched a movie",
+    "prompt3": "High fived someone"
+  },
+  {
+    "date": "2022-07-16",
+    "prompt1": "Rested my eyes",
+    "prompt2": "Used mouthwash",
+    "prompt3": "Watched the news"
+  },
+  {
+    "date": "2022-07-17",
+    "prompt1": "Re-learned something",
+    "prompt2": "Texted a friend",
+    "prompt3": "Watched a sports game"
+  },
+  {
+    "date": "2022-07-18",
+    "prompt1": "Planned something",
+    "prompt2": "Had deja vu",
+    "prompt3": "Organized something"
+  },
+  {
+    "date": "2022-07-19",
+    "prompt1": "Got angry",
+    "prompt2": "Spoke more than 1 language",
+    "prompt3": "Ate some snacks"
+  },
+  {
+    "date": "2022-07-20",
+    "prompt1": "Told a joke",
+    "prompt2": "Ate something yummy",
+    "prompt3": "Talked to a stranger"
+  },
+  {
+    "date": "2022-07-21",
+    "prompt1": "Cleaned my washroom",
+    "prompt2": "Yelled out loud",
+    "prompt3": "Watched a TV show"
+  },
+  {
+    "date": "2022-07-22",
+    "prompt1": "Thought about someone",
+    "prompt2": "Taught something",
+    "prompt3": "Tipped someone"
   }
 ]

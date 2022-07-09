@@ -29,3 +29,5 @@ database.forEach((obj) => {
 
   console.log('>>>>>>>>>>>>>>>>>>>END')
 });
+
+process.exit();
